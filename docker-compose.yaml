@@ -12,7 +12,7 @@ services:
     restart: always
 
   webapi:
-    build: . # image: images.mysite.com/webapi:1
+    image: 656765/dockerwebapi:latest
     depends_on:
       - db
     environment:
