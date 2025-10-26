@@ -15,5 +15,10 @@ namespace DockerWebApi.Services
         {
             return await _productRepository.GetProductsAsync();
         }
+
+        public async Task<Product?> GetProductAsync(int id)
+        {
+            return await _productRepository.GetProductAsync(id);
+        }
     }
 }

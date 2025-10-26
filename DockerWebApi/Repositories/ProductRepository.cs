@@ -12,6 +12,11 @@ namespace DockerWebApi.Repositories
             return await _context.Products.ToListAsync();
         }
 
+        public async Task<Product?> GetProductAsync(int id)
+        {
+            return await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task AddProductAsync(Product product)
         {
             _context.Products.Add(product);

@@ -8,13 +8,19 @@ namespace DockerWebApi.Controllers
     [Route("api/[controller]")]
     public class ProductsController(IProductService _productService) : ControllerBase
     {
-        [HttpGet]
-        public async Task<List<Product>> GetAsync()
+        [HttpGet("GetProducts")]
+        public async Task<List<Product>> GetAllAsync()
         {
             return await _productService.GetProductsAsync();
         }
 
-        [HttpPost]
+        [HttpGet("GetProduct")]
+        public async Task<Product?> GetAsync(int id)
+        {
+            return await _productService.GetProductAsync(id);
+        }
+
+        [HttpPost("AddProduct")]
         public async Task<bool> PostAsync(Product product)
         {
             await _productService.AddProductAsync(product);

@@ -7,11 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-                           ?? Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+    var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
+        ?? builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseNpgsql(connectionString);
 });
 
@@ -24,7 +23,12 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
