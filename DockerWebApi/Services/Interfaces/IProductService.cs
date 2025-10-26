@@ -7,5 +7,6 @@ namespace DockerWebApi.Services.Interfaces
         Task<List<Product>> GetProductsAsync();
         Task<Product?> GetProductAsync(int id);
         Task AddProductAsync(Product product);
+        Task DeleteProductAsync(int id);
     }
 }

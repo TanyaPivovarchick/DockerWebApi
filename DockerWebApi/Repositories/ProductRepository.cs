@@ -22,5 +22,11 @@ namespace DockerWebApi.Repositories
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
         }
+
+        public async Task DeleteProductAsync(Product product)
+        {
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+        }
     }
 }

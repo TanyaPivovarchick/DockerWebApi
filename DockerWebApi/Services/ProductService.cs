@@ -20,5 +20,13 @@ namespace DockerWebApi.Services
         {
             return await _productRepository.GetProductAsync(id);
         }
+
+        public async Task DeleteProductAsync(int id)
+        {
+            var product = await _productRepository.GetProductAsync(id)
+                ?? throw new ArgumentException("Product doesn't exist");
+
+            await _productRepository.DeleteProductAsync(product);
+        }
     }
 }

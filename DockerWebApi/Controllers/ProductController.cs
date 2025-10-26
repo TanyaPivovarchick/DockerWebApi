@@ -26,5 +26,12 @@ namespace DockerWebApi.Controllers
             await _productService.AddProductAsync(product);
             return true;
         }
+
+        [HttpDelete("DeleteProduct")]
+        public async Task<bool> DeleteAsync(int id)
+        {
+            await _productService.DeleteProductAsync(id);
+            return true;
+        }
     }
 }

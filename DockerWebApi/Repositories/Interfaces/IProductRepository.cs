@@ -7,5 +7,6 @@ namespace DockerWebApi.Repositories.Interfaces
         Task<List<Product>> GetProductsAsync();
         Task<Product?> GetProductAsync(int id);
         Task AddProductAsync(Product product);
+        Task DeleteProductAsync(Product product);
     }
 }
